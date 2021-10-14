@@ -2,67 +2,67 @@
 
 ## below scripts are for data in /home/daniel/ubuntu/workspace/all_049/gbm_049_unmerged
 
-nano .bashrc
-export gbm_049=/home/daniel/ubuntu/workspace/all_049/gbm_049
+	nano .bashrc
+	export gbm_049=/home/daniel/ubuntu/workspace/all_049/gbm_049
 
 
 #navigate to folder where the bam files are
 
-java -Xmx2g -jar $PICARD MergeSamFiles OUTPUT=9.bam INPUT=9_rep1.bam INPUT=9_rep2.bam
-java -Xmx2g -jar $PICARD MergeSamFiles OUTPUT=10.bam INPUT=10_rep1.bam INPUT=10_rep2.bam
+	java -Xmx2g -jar $PICARD MergeSamFiles OUTPUT=9.bam INPUT=9_rep1.bam INPUT=9_rep2.bam
+	java -Xmx2g -jar $PICARD MergeSamFiles OUTPUT=10.bam INPUT=10_rep1.bam INPUT=10_rep2.bam
 
 
-samtools index 9.bam
-samtools index 10.bam
-
-
-
-mkdir -p $gbm_049/expression/stringtie/ref_only/
-cd $gbm_049/expression/stringtie/ref_only/
-
-stringtie --fr -p 8 -G $gbm/RNA_REF_GTF/hg38.ncbiRefSeq.gtf -e -B -o 1/transcripts.gtf -A 1/gene_abundances.tsv $gbm/alignments/1.bam
-stringtie --fr -p 8 -G $gbm/RNA_REF_GTF/hg38.ncbiRefSeq.gtf -e -B -o 2/transcripts.gtf -A 2/gene_abundances.tsv $gbm/alignments/2.bam
-
-stringtie --fr -p 8 -G $gbm/RNA_REF_GTF/hg38.ncbiRefSeq.gtf -e -B -o 3/transcripts.gtf -A 3/gene_abundances.tsv $gbm/alignments/3.bam
-stringtie --fr -p 8 -G $gbm/RNA_REF_GTF/hg38.ncbiRefSeq.gtf -e -B -o 4/transcripts.gtf -A 4/gene_abundances.tsv $gbm/alignments/4.bam
-
-stringtie --fr -p 8 -G $gbm/RNA_REF_GTF/hg38.ncbiRefSeq.gtf -e -B -o 5/transcripts.gtf -A 5/gene_abundances.tsv $gbm/alignments/5.bam
-stringtie --fr -p 8 -G $gbm/RNA_REF_GTF/hg38.ncbiRefSeq.gtf -e -B -o 6/transcripts.gtf -A 6/gene_abundances.tsv $gbm/alignments/6.bam
-
-stringtie --fr -p 8 -G $gbm/RNA_REF_GTF/hg38.ncbiRefSeq.gtf -e -B -o 7/transcripts.gtf -A 7/gene_abundances.tsv $gbm/alignments/7.bam
-stringtie --fr -p 8 -G $gbm/RNA_REF_GTF/hg38.ncbiRefSeq.gtf -e -B -o 8/transcripts.gtf -A 8/gene_abundances.tsv $gbm/alignments/8.bam
-
-stringtie --fr -p 8 -G $gbm/RNA_REF_GTF/hg38.ncbiRefSeq.gtf -e -B -o 9/transcripts.gtf -A 9/gene_abundances.tsv $gbm/alignments/9.bam
-stringtie --fr -p 8 -G $gbm/RNA_REF_GTF/hg38.ncbiRefSeq.gtf -e -B -o 10/transcripts.gtf -A 10/gene_abundances.tsv $gbm/alignments/10.bam
+	samtools index 9.bam
+	samtools index 10.bam
 
 
 
+	mkdir -p $gbm_049/expression/stringtie/ref_only/
+	cd $gbm_049/expression/stringtie/ref_only/
 
+	stringtie --fr -p 8 -G $gbm/RNA_REF_GTF/hg38.ncbiRefSeq.gtf -e -B -o 1/transcripts.gtf -A 1/gene_abundances.tsv $gbm/alignments/1.bam
+	stringtie --fr -p 8 -G $gbm/RNA_REF_GTF/hg38.ncbiRefSeq.gtf -e -B -o 2/transcripts.gtf -A 2/gene_abundances.tsv $gbm/alignments/2.bam
 
-mkdir -p $gbm_049/expression/htseq_counts
-cd $gbm_049/expression/htseq_counts
+	stringtie --fr -p 8 -G $gbm/RNA_REF_GTF/hg38.ncbiRefSeq.gtf -e -B -o 3/transcripts.gtf -A 3/gene_abundances.tsv $gbm/alignments/3.bam
+	stringtie --fr -p 8 -G $gbm/RNA_REF_GTF/hg38.ncbiRefSeq.gtf -e -B -o 4/transcripts.gtf -A 4/gene_abundances.tsv $gbm/alignments/4.bam
 
+	stringtie --fr -p 8 -G $gbm/RNA_REF_GTF/hg38.ncbiRefSeq.gtf -e -B -o 5/transcripts.gtf -A 5/gene_abundances.tsv $gbm/alignments/5.bam
+	stringtie --fr -p 8 -G $gbm/RNA_REF_GTF/hg38.ncbiRefSeq.gtf -e -B -o 6/transcripts.gtf -A 6/gene_abundances.tsv $gbm/alignments/6.bam
 
-htseq-count --format bam --order pos --mode intersection-strict --stranded reverse --minaqual 1 --type exon --idattr gene_id $gbm_049/alignments/1.bam $gbm/RNA_REF_GTF/hg38.ncbiRefSeq.gtf > 1.tsv
-htseq-count --format bam --order pos --mode intersection-strict --stranded reverse --minaqual 1 --type exon --idattr gene_id $gbm_049/alignments/2.bam $gbm/RNA_REF_GTF/hg38.ncbiRefSeq.gtf > 2.tsv
+	stringtie --fr -p 8 -G $gbm/RNA_REF_GTF/hg38.ncbiRefSeq.gtf -e -B -o 7/transcripts.gtf -A 7/gene_abundances.tsv $gbm/alignments/7.bam
+	stringtie --fr -p 8 -G $gbm/RNA_REF_GTF/hg38.ncbiRefSeq.gtf -e -B -o 8/transcripts.gtf -A 8/gene_abundances.tsv $gbm/alignments/8.bam
 
-htseq-count --format bam --order pos --mode intersection-strict --stranded reverse --minaqual 1 --type exon --idattr gene_id $gbm_049/alignments/3.bam $gbm/RNA_REF_GTF/hg38.ncbiRefSeq.gtf > 3.tsv
-htseq-count --format bam --order pos --mode intersection-strict --stranded reverse --minaqual 1 --type exon --idattr gene_id $gbm_049/alignments/4.bam $gbm/RNA_REF_GTF/hg38.ncbiRefSeq.gtf > 4.tsv
-
-htseq-count --format bam --order pos --mode intersection-strict --stranded reverse --minaqual 1 --type exon --idattr gene_id $gbm_049/alignments/5.bam $gbm/RNA_REF_GTF/hg38.ncbiRefSeq.gtf > 5.tsv
-htseq-count --format bam --order pos --mode intersection-strict --stranded reverse --minaqual 1 --type exon --idattr gene_id $gbm_049/alignments/6.bam $gbm/RNA_REF_GTF/hg38.ncbiRefSeq.gtf > 6.tsv
-
-htseq-count --format bam --order pos --mode intersection-strict --stranded reverse --minaqual 1 --type exon --idattr gene_id $gbm_049/alignments/7.bam $gbm/RNA_REF_GTF/hg38.ncbiRefSeq.gtf > 7.tsv
-htseq-count --format bam --order pos --mode intersection-strict --stranded reverse --minaqual 1 --type exon --idattr gene_id $gbm_049/alignments/8.bam $gbm/RNA_REF_GTF/hg38.ncbiRefSeq.gtf > 8.tsv
-
-htseq-count --format bam --order pos --mode intersection-strict --stranded reverse --minaqual 1 --type exon --idattr gene_id $gbm_049/alignments/9.bam $gbm/RNA_REF_GTF/hg38.ncbiRefSeq.gtf > 9.tsv
-htseq-count --format bam --order pos --mode intersection-strict --stranded reverse --minaqual 1 --type exon --idattr gene_id $gbm_049/alignments/10.bam $gbm/RNA_REF_GTF/hg38.ncbiRefSeq.gtf > 10.tsv
+	stringtie --fr -p 8 -G $gbm/RNA_REF_GTF/hg38.ncbiRefSeq.gtf -e -B -o 9/transcripts.gtf -A 9/gene_abundances.tsv $gbm/alignments/9.bam
+	stringtie --fr -p 8 -G $gbm/RNA_REF_GTF/hg38.ncbiRefSeq.gtf -e -B -o 10/transcripts.gtf -A 10/gene_abundances.tsv $gbm/alignments/10.bam
 
 
 
 
-mkdir -p $gbm_049/de/ballgown/ref_only
-cd $gbm_049/de/ballgown/ref_only/
+
+	mkdir -p $gbm_049/expression/htseq_counts
+	cd $gbm_049/expression/htseq_counts
+
+
+	htseq-count --format bam --order pos --mode intersection-strict --stranded reverse --minaqual 1 --type exon --idattr gene_id $gbm_049/alignments/1.bam $gbm/RNA_REF_GTF/hg38.ncbiRefSeq.gtf > 1.tsv
+	htseq-count --format bam --order pos --mode intersection-strict --stranded reverse --minaqual 1 --type exon --idattr gene_id $gbm_049/alignments/2.bam $gbm/RNA_REF_GTF/hg38.ncbiRefSeq.gtf > 2.tsv
+
+	htseq-count --format bam --order pos --mode intersection-strict --stranded reverse --minaqual 1 --type exon --idattr gene_id $gbm_049/alignments/3.bam $gbm/RNA_REF_GTF/hg38.ncbiRefSeq.gtf > 3.tsv
+	htseq-count --format bam --order pos --mode intersection-strict --stranded reverse --minaqual 1 --type exon --idattr gene_id $gbm_049/alignments/4.bam $gbm/RNA_REF_GTF/hg38.ncbiRefSeq.gtf > 4.tsv
+
+	htseq-count --format bam --order pos --mode intersection-strict --stranded reverse --minaqual 1 --type exon --idattr gene_id $gbm_049/alignments/5.bam $gbm/RNA_REF_GTF/hg38.ncbiRefSeq.gtf > 5.tsv
+	htseq-count --format bam --order pos --mode intersection-strict --stranded reverse --minaqual 1 --type exon --idattr gene_id $gbm_049/alignments/6.bam $gbm/RNA_REF_GTF/hg38.ncbiRefSeq.gtf > 6.tsv
+
+	htseq-count --format bam --order pos --mode intersection-strict --stranded reverse --minaqual 1 --type exon --idattr gene_id $gbm_049/alignments/7.bam $gbm/RNA_REF_GTF/hg38.ncbiRefSeq.gtf > 7.tsv
+	htseq-count --format bam --order pos --mode intersection-strict --stranded reverse --minaqual 1 --type exon --idattr gene_id $gbm_049/alignments/8.bam $gbm/RNA_REF_GTF/hg38.ncbiRefSeq.gtf > 8.tsv
+
+	htseq-count --format bam --order pos --mode intersection-strict --stranded reverse --minaqual 1 --type exon --idattr gene_id $gbm_049/alignments/9.bam $gbm/RNA_REF_GTF/hg38.ncbiRefSeq.gtf > 9.tsv
+	htseq-count --format bam --order pos --mode intersection-strict --stranded reverse --minaqual 1 --type exon --idattr gene_id $gbm_049/alignments/10.bam $gbm/RNA_REF_GTF/hg38.ncbiRefSeq.gtf > 10.tsv
+
+
+
+
+	mkdir -p $gbm_049/de/ballgown/ref_only
+	cd $gbm_049/de/ballgown/ref_only/
 
 
 ids type path-to-file-011_invitro_1 011 $gbm/expression/stringtie/1 011_invitro_2 011 $gbm/expression/stringtie/2 ... ...
@@ -82,11 +82,11 @@ printf "\"ids\",\"type\",\"path
 \"\n" > GBM_049_all.csv
 
 
-printf "\"ids\",\"type\",\"path\"\n\"1\",\"049_tissue\",\"$gbm_049/expression/stringtie/ref_only/1\"\n\"2\",\"049_tissue\",\"$gbm_049/expression/stringtie/ref_only/2\"\n\"3\",\"049_slice\",\"$gbm_049/expression/stringtie/ref_only/3\"\n\"4\",\"049_slice\",\"$gbm_049/expression/stringtie/ref_only/4\"\n\"5\",\"049_discells\",\"$gbm_049/expression/stringtie/ref_only/5\"\n\"6\",\"049_discells\",\"$gbm_049/expression/stringtie/ref_only/6\"\n\"7\",\"049_organoid\",\"$gbm_049/expression/stringtie/ref_only/7\"\n\"8\",\"049_organoid\",\"$gbm_049/expression/stringtie/ref_only/8\"\n\"9\",\"049_invitro\",\"$gbm_049/expression/stringtie/ref_only/9\"\n\"10\",\"049_invitro\",\"$gbm_049/expression/stringtie/ref_only/10\"\n" > GBM_049_all.csv
+	printf "\"ids\",\"type\",\"path\"\n\"1\",\"049_tissue\",\"$gbm_049/expression/stringtie/ref_only/1\"\n\"2\",\"049_tissue\",\"$gbm_049/expression/stringtie/ref_only/2\"\n\"3\",\"049_slice\",\"$gbm_049/expression/stringtie/ref_only/3\"\n\"4\",\"049_slice\",\"$gbm_049/expression/stringtie/ref_only/4\"\n\"5\",\"049_discells\",\"$gbm_049/expression/stringtie/ref_only/5\"\n\"6\",\"049_discells\",\"$gbm_049/expression/stringtie/ref_only/6\"\n\"7\",\"049_organoid\",\"$gbm_049/expression/stringtie/ref_only/7\"\n\"8\",\"049_organoid\",\"$gbm_049/expression/stringtie/ref_only/8\"\n\"9\",\"049_invitro\",\"$gbm_049/expression/stringtie/ref_only/9\"\n\"10\",\"049_invitro\",\"$gbm_049/expression/stringtie/ref_only/10\"\n" > GBM_049_all.csv
 
 
 
-R --no-restore
+	R --no-restore
 	library(ballgown)
 	library(genefilter)
 	library(dplyr)
