@@ -284,16 +284,24 @@ optional
 
 ## Compare the correlation distance between all replicates
 
-#Calculate the FPKM sum for all 10 libraries
+
+Scree plot: Determine the amount of variance coming from each principal component in a table:
+
+	pc <- princomp(gene_expression[,data_columns],cor=TRUE,scores=TRUE)
+	summary(pc)
+	plot(pc,type='lines')
+	
+
+Calculate the FPKM sum for all 10 libraries
 
 	gene_expression[,"sum"]=apply(gene_expression[,data_columns], 1, sum)
 
-#Filter out genes with a grand sum FPKM of less than 10
+Filter out genes with a grand sum FPKM of less than 10
 
 	i = which(gene_expression[,"sum"] > 10)
 
 
-#Calculate the correlation between all pairs of data
+Calculate the correlation between all pairs of data
 
 	r=cor(gene_expression[i,data_columns], use="pairwise.complete.obs", method="pearson")
 	r
