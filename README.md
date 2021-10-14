@@ -3,7 +3,7 @@
 ## below scripts are for data in /home/daniel/ubuntu/workspace/all_049/gbm_049_unmerged
 
 	nano .bashrc
-	export gbm_049=/home/daniel/ubuntu/workspace/all_049/gbm_049
+	export gbm_049=/home/daniel/ubuntu/workspace/all_049/gbm_049_unmerged
 
 
 #navigate to folder where the bam files are
@@ -82,7 +82,7 @@ printf "\"ids\",\"type\",\"path
 \"\n" > GBM_049_all.csv
 
 
-	printf "\"ids\",\"type\",\"path\"\n\"1\",\"049_tissue\",\"$gbm_049/expression/stringtie/ref_only/1\"\n\"2\",\"049_tissue\",\"$gbm_049/expression/stringtie/ref_only/2\"\n\"3\",\"049_slice\",\"$gbm_049/expression/stringtie/ref_only/3\"\n\"4\",\"049_slice\",\"$gbm_049/expression/stringtie/ref_only/4\"\n\"5\",\"049_discells\",\"$gbm_049/expression/stringtie/ref_only/5\"\n\"6\",\"049_discells\",\"$gbm_049/expression/stringtie/ref_only/6\"\n\"7\",\"049_organoid\",\"$gbm_049/expression/stringtie/ref_only/7\"\n\"8\",\"049_organoid\",\"$gbm_049/expression/stringtie/ref_only/8\"\n\"9\",\"049_invitro\",\"$gbm_049/expression/stringtie/ref_only/9\"\n\"10\",\"049_invitro\",\"$gbm_049/expression/stringtie/ref_only/10\"\n" > GBM_049_all.csv
+	printf "\"ids\",\"type\",\"path\"\n\"1\",\"049_tissue\",\"$gbm_049/expression/stringtie/ref_only/1\"\n\"2\",\"049_tissue\",\"$gbm_049/expression/stringtie/ref_only/2\"\n\"3\",\"049_slice\",\"$gbm_049/expression/stringtie/ref_only/3\"\n\"4\",\"049_slice\",\"$gbm_049/expression/stringtie/ref_only/4\"\n\"5\",\"049_discells\",\"$gbm_049/expression/stringtie/ref_only/5\"\n\"6\",\"049_discells\",\"$gbm_049/expression/stringtie/ref_only/6\"\n\"7\",\"049_organoid\",\"$gbm_049/expression/stringtie/ref_only/7\"\n\"8\",\"049_organoid\",\"$gbm_049/expression/stringtie/ref_only/8\"\n\"9\",\"049_invitro\",\"$gbm_049/expression/stringtie/ref_only/9\"\n\"10\",\"049_invitro\",\"$gbm_049/expression/stringtie/ref_only/10\"\n" > GBM049_all.csv
 
 
 
@@ -95,7 +95,7 @@ printf "\"ids\",\"type\",\"path
 	library(gplots)
 	library(GenomicRanges)
 
-	pheno_data = read.csv("GBM_049_all.csv")  
+	pheno_data = read.csv("GBM049_all.csv")  
 
 
 	bg = ballgown(samples=as.vector(pheno_data$path), pData=pheno_data)
