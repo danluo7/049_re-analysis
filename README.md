@@ -115,7 +115,7 @@ printf "\"ids\",\"type\",\"path
 
 
 
-		pdf(file="GBM_049_R_output.pdf")
+		pdf(file="GBM049_R_output.pdf")
 
 		working_dir = "~/workspace/gbm_049_unmerged/de/ballgown/ref_only"
 		setwd(working_dir)
