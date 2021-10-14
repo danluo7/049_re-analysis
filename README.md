@@ -175,7 +175,9 @@ printf "\"ids\",\"type\",\"path
 
 
 
-#Plot the number of transcripts per gene. Many genes will have only 1 transcript, some genes will have several transcripts. Use the 'table()' command #to count the number of times each gene symbol occurs (i.e. the # of transcripts that have each gene symbol). Then use the 'hist' command to create a #histogram of these counts
+## Plot the number of transcripts per gene. 
+
+Many genes will have only 1 transcript, some genes will have several transcripts. Use the 'table()' command #to count the number of times each gene symbol occurs (i.e. the # of transcripts that have each gene symbol). Then use the 'hist' command to create a #histogram of these counts
 
 		counts=table(transcript_gene_table[,"g_id"])
 		c_one = length(which(counts == 1))
@@ -189,7 +191,8 @@ printf "\"ids\",\"type\",\"path
 
 
 
-#Plot the distribution of transcript sizes as a histogram. lengths will be those of known transcripts. Good QC step: we had a low coverage library, or #other problems, we might get short 'transcripts' that are actually only pieces of real transcripts.
+## Plot the distribution of transcript sizes as a histogram. lengths will be those of known transcripts. 
+Good QC step: we had a low coverage library, or other problems, we might get short 'transcripts' that are actually only pieces of real transcripts.
 
 		full_table <- texpr(bg , 'all')
 		hist(full_table$length, breaks=500, xlab="Transcript length (bp)", main="Distribution of transcript lengths", col="steelblue")
