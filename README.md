@@ -102,72 +102,58 @@ printf "\"ids\",\"type\",\"path
 	bg
 
 
-		bg_table = texpr(bg, 'all')
+	bg_table = texpr(bg, 'all')
 
 
-		bg_gene_names = unique(bg_table[, 9:10])
-		head(bg_gene_names)
+	bg_gene_names = unique(bg_table[, 9:10])
+	head(bg_gene_names)
 
 
-		save(bg, file='bg.rda')
+	save(bg, file='bg.rda')
 
-		bg
-
-
-
-		pdf(file="GBM049_R_output.pdf")
-
-		working_dir = "~/workspace/gbm_049_unmerged/de/ballgown/ref_only"
-		setwd(working_dir)
-		dir()
+	bg
 
 
+	pdf(file="GBM049_R_output.pdf")
 
-		
-		load('bg.rda')
+	working_dir = "~/workspace/gbm_049_unmerged/de/ballgown/ref_only"
+	setwd(working_dir)
+	dir()
 
 
 
 		
-		bg_table = texpr(bg, 'all')
-		bg_gene_names = unique(bg_table[, 9:10])
+	load('bg.rda')
 
-
-
-
-		gene_expression = as.data.frame(gexpr(bg))
-		head(gene_expression)
-
-
-
-		colnames(gene_expression)
 
 
 		
-		row.names(gene_expression)
-
-
-
-		dim(gene_expression)
-
-
-
-
-		i = row.names(gene_expression) == "BRD4"
-		gene_expression[i,]
+	bg_table = texpr(bg, 'all')
+	bg_gene_names = unique(bg_table[, 9:10])
 
 
 
 
+	gene_expression = as.data.frame(gexpr(bg))
+	head(gene_expression)
 
 
 
+	colnames(gene_expression)
 
-		transcript_gene_table = indexes(bg)$t2g
-		head(transcript_gene_table)
+
 		
-		length(row.names(transcript_gene_table)) #Transcript count
-		length(unique(transcript_gene_table[,"g_id"])) #Unique Gene count
+	row.names(gene_expression)
+
+
+
+	dim(gene_expression)
+
+
+
+
+	i = row.names(gene_expression) == "BRD4"
+	gene_expression[i,]
 
 
 
@@ -176,7 +162,20 @@ printf "\"ids\",\"type\",\"path
 
 
 
-	#Plot the number of transcripts per gene. Many genes will have only 1 transcript, some genes will have several transcripts. Use the 'table()' command #to count the number of times each gene symbol occurs (i.e. the # of transcripts that have each gene symbol). Then use the 'hist' command to create a #histogram of these counts
+	transcript_gene_table = indexes(bg)$t2g
+	head(transcript_gene_table)
+		
+	length(row.names(transcript_gene_table)) #Transcript count
+	length(unique(transcript_gene_table[,"g_id"])) #Unique Gene count
+
+
+
+
+
+
+
+
+#Plot the number of transcripts per gene. Many genes will have only 1 transcript, some genes will have several transcripts. Use the 'table()' command #to count the number of times each gene symbol occurs (i.e. the # of transcripts that have each gene symbol). Then use the 'hist' command to create a #histogram of these counts
 
 		counts=table(transcript_gene_table[,"g_id"])
 		c_one = length(which(counts == 1))
@@ -190,7 +189,7 @@ printf "\"ids\",\"type\",\"path
 
 
 
-	#Plot the distribution of transcript sizes as a histogram. lengths will be those of known transcripts. Good QC step: we had a low coverage library, or #other problems, we might get short 'transcripts' that are actually only pieces of real transcripts.
+#Plot the distribution of transcript sizes as a histogram. lengths will be those of known transcripts. Good QC step: we had a low coverage library, or #other problems, we might get short 'transcripts' that are actually only pieces of real transcripts.
 
 		full_table <- texpr(bg , 'all')
 		hist(full_table$length, breaks=500, xlab="Transcript length (bp)", main="Distribution of transcript lengths", col="steelblue")
@@ -214,7 +213,9 @@ printf "\"ids\",\"type\",\"path
 
 
 		colors()
-		data_colors=c("tomato1","tomato2","royalblue1","royalblue2","grey1","grey2","seagreen1","seagreen2","grey3","grey4")
+		
+		
+			data_colors=c("tomato1","tomato2","royalblue1","royalblue2","grey1","grey2","seagreen1","seagreen2","grey3","grey4")
 
 		boxplot(log2(gene_expression[,data_columns]+min_nonzero), col=data_colors, names=short_names, las=2, ylab="log2(FPKM)", main="Distribution of FPKMs for all 10 sample libraries")
 
