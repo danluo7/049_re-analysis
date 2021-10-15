@@ -176,38 +176,30 @@ Many genes will have only 1 transcript, some genes will have several transcripts
 ## Plot the distribution of transcript sizes as a histogram. lengths will be those of known transcripts. 
 Good QC step: we had a low coverage library, or other problems, we might get short 'transcripts' that are actually only pieces of real transcripts.
 
-		full_table <- texpr(bg , 'all')
-		hist(full_table$length, breaks=500, xlab="Transcript length (bp)", main="Distribution of transcript lengths", col="steelblue")
+	full_table <- texpr(bg , 'all')
+	hist(full_table$length, breaks=500, xlab="Transcript length (bp)", main="Distribution of transcript lengths", col="steelblue")
 
 
 		
-		min(gene_expression[,"FPKM.1"])
-		max(gene_expression[,"FPKM.2"])
+	min(gene_expression[,"FPKM.1"])
+	max(gene_expression[,"FPKM.2"])
 
 
 		
-		min_nonzero=1
+	min_nonzero=1
 
 
 
-		data_columns=c(1:10)
-		short_names=c("tissue_1","tissue_2","slice_1","slice2","discells_1", "discells_2","organoid_1","organoid_2","invitro_1","invitro_2")
-
-
-
-
-
-		colors()
-		
-		
-			data_colors=c("tomato1","tomato2","royalblue1","royalblue2","grey1","grey2","seagreen1","seagreen2","grey3","grey4")
-
-		boxplot(log2(gene_expression[,data_columns]+min_nonzero), col=data_colors, names=short_names, las=2, ylab="log2(FPKM)", main="Distribution of FPKMs for all 10 sample libraries")
+	data_columns=c(1:10)
+	short_names=c("tissue_1","tissue_2","slice_1","slice2","discells_1", "discells_2","organoid_1","organoid_2","invitro_1","invitro_2")
 
 
 
 
+	colors()
+	data_colors=c("tomato1","tomato2","royalblue1","royalblue2","seagreen1","seagreen2","grey1","grey2","brown1","brown2")
 
+	boxplot(log2(gene_expression[,data_columns]+min_nonzero), col=data_colors, names=short_names, las=2, ylab="log2(FPKM)", main="Distribution of FPKMs for libraries of all 10 samples")
 
 
 
