@@ -125,9 +125,6 @@ actual script:
 
 		
 	load('bg.rda')
-
-
-
 		
 	bg_table = texpr(bg, 'all')
 	bg_gene_names = unique(bg_table[, 9:10])
@@ -143,23 +140,11 @@ actual script:
 	colnames(gene_expression)
 
 
-		
-	row.names(gene_expression)
-
-
-
 	dim(gene_expression)
-
-
 
 
 	i = row.names(gene_expression) == "BRD4"
 	gene_expression[i,]
-
-
-
-
-
 
 
 
@@ -168,10 +153,6 @@ actual script:
 		
 	length(row.names(transcript_gene_table)) #Transcript count
 	length(unique(transcript_gene_table[,"g_id"])) #Unique Gene count
-
-
-
-
 
 
 
