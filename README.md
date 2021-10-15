@@ -65,25 +65,25 @@
 	cd $gbm_049/de/ballgown/ref_only/
 
 
-ids type path-to-file-011_invitro_1 011 $gbm/expression/stringtie/1 011_invitro_2 011 $gbm/expression/stringtie/2 ... ...
+format: ids type path-to-file-011_invitro_1 011 $gbm/expression/stringtie/1 011_invitro_2 011 $gbm/expression/stringtie/2 ... ...
 
 
 printf "\"ids\",\"type\",\"path\"\
-n"Sample17_Lane2","049_slice","$gbm_049_drake/expression/stringtie/ref_only/Sample17_Lane2"\
-n"Sample17_Lane3","049_slice","$gbm_049_drake/expression/stringtie/ref_only/Sample17_Lane3"\
-n"Sample29_Lane2","049_organoid","$gbm_049_drake/expression/stringtie/ref_only/Sample29_Lane2"\
-n"Sample29_Lane3","049_organoid","$gbm_049_drake/expression/stringtie/ref_only/Sample29_Lane3"\
-n"Sample18_Lane2","049_neurospheres","$gbm_049_drake/expression/stringtie/ref_only/Sample18_Lane2"\
-n"Sample18_Lane3","049_neurospheres","$gbm_049_drake/expression/stringtie/ref_only/Sample18_Lane3"\
-n"Sample6_Lane2","049_tissue","$gbm_049_drake/expression/stringtie/ref_only/Sample6_Lane2"\
-n"Sample6_Lane3","049_tissue","$gbm_049_drake/expression/stringtie/ref_only/Sample6_Lane3"\
-n"Sample26_Lane2","049_invitro","$gbm_049_drake/expression/stringtie/ref_only/Sample26_Lane2"\
-n"Sample27_Lane2","049_invitro","$gbm_049_drake/expression/stringtie/ref_only/Sample27_Lane2 "\
+n"1","049_slice","$gbm_049/expression/stringtie/ref_only/1"\
+n"2","049_slice","$gbm_049/expression/stringtie/ref_only/2"\
+n"3","049_organoid","$gbm_049/expression/stringtie/ref_only/3"\
+n"4","049_organoid","$gbm_049/expression/stringtie/ref_only/4"\
+n"5","049_neurospheres","$gbm_049/expression/stringtie/ref_only/5"\
+n"6","049_neurospheres","$gbm_049/expression/stringtie/ref_only/6"\
+n"7","049_tissue","$gbm_049/expression/stringtie/ref_only/7"\
+n"8","049_tissue","$gbm_049/expression/stringtie/ref_only/8"\
+n"9","049_invitro","$gbm_049/expression/stringtie/ref_only/9"\
+n"10","049_invitro","$gbm_049/expression/stringtie/ref_only/10"\
 n" > GBM049_all.csv
 
 actual script:
 
-    printf "\"ids\",\"type\",\"path\"\n"Sample17_Lane2","049_slice","$gbm_049_drake/expression/stringtie/ref_only/Sample17_Lane2"\n"Sample17_Lane3","049_slice","$gbm_049_drake/expression/stringtie/ref_only/Sample17_Lane3"\n"Sample29_Lane2","049_organoid","$gbm_049_drake/expression/stringtie/ref_only/Sample29_Lane2"\n"Sample29_Lane3","049_organoid","$gbm_049_drake/expression/stringtie/ref_only/Sample29_Lane3"\n"Sample18_Lane2","049_neurospheres","$gbm_049_drake/expression/stringtie/ref_only/Sample18_Lane2"\n"Sample18_Lane3","049_neurospheres","$gbm_049_drake/expression/stringtie/ref_only/Sample18_Lane3"\n"Sample6_Lane2","049_tissue","$gbm_049_drake/expression/stringtie/ref_only/Sample6_Lane2"\n"Sample6_Lane3","049_tissue","$gbm_049_drake/expression/stringtie/ref_only/Sample6_Lane3"\n"Sample26_Lane2","049_invitro","$gbm_049_drake/expression/stringtie/ref_only/Sample26_Lane2"\n"Sample27_Lane2","049_invitro","$gbm_049_drake/expression/stringtie/ref_only/Sample27_Lane2 "\n" > GBM049_all.csv
+	printf "\"ids\",\"type\",\"path\"\n"1","049_slice","$gbm_049/expression/stringtie/ref_only/1"\n"2","049_slice","$gbm_049/expression/stringtie/ref_only/2"\n"3","049_organoid","$gbm_049/expression/stringtie/ref_only/3"\n"4","049_organoid","$gbm_049/expression/stringtie/ref_only/4"\n"5","049_neurospheres","$gbm_049/expression/stringtie/ref_only/5"\n"6","049_neurospheres","$gbm_049/expression/stringtie/ref_only/6"\n"7","049_tissue","$gbm_049/expression/stringtie/ref_only/7"\n"8","049_tissue","$gbm_049/expression/stringtie/ref_only/8"\n"9","049_invitro","$gbm_049/expression/stringtie/ref_only/9"\n"10","049_invitro","$gbm_049/expression/stringtie/ref_only/10"\n" > GBM049_all.csv
 
 
 
@@ -287,7 +287,7 @@ Calculate the correlation between all pairs of data
 	d=1-r
 	mds=cmdscale(d, k=2, eig=TRUE)
 	par(mfrow=c(1,1))
-	plot(mds$points, type="n", xlab="", ylab="", main="MDS distance plot (all non-zero genes)", xlim=c(-0.4,0.4), ylim=c(-0.3,0.3))
+	plot(mds$points, type="n", xlab="", ylab="", main="MDS distance plot (all non-zero genes)", xlim=c(-0.2,0.3), ylim=c(-0.1,0.1))
 	points(mds$points[,1], mds$points[,2], col="grey", cex=2, pch=16)
 	text(mds$points[,1], mds$points[,2], short_names, col=data_colors)
 
