@@ -68,21 +68,22 @@
 ids type path-to-file-011_invitro_1 011 $gbm/expression/stringtie/1 011_invitro_2 011 $gbm/expression/stringtie/2 ... ...
 
 
-printf "\"ids\",\"type\",\"path
-\"\n\"1\",\"049_tissue\",\"$gbm_049/expression/stringtie/ref_only/1
-\"\n\"2\",\"049_tissue\",\"$gbm_049/expression/stringtie/ref_only/2
-\"\n\"3\",\"049_slice\",\"$gbm_049/expression/stringtie/ref_only/3
-\"\n\"4\",\"049_slice\",\"$gbm_049/expression/stringtie/ref_only/4
-\"\n\"5\",\"049_discells\",\"$gbm_049/expression/stringtie/ref_only/5
-\"\n\"6\",\"049_discells\",\"$gbm_049/expression/stringtie/ref_only/6
-\"\n\"7\",\"049_organoid\",\"$gbm_049/expression/stringtie/ref_only/7
-\"\n\"8\",\"049_organoid\",\"$gbm_049/expression/stringtie/ref_only/8
-\"\n\"9\",\"049_invitro\",\"$gbm_049/expression/stringtie/ref_only/9
-\"\n\"10\",\"049_invitro\",\"$gbm_049/expression/stringtie/ref_only/10
-\"\n" > GBM049_all.csv
+printf "\"ids\",\"type\",\"path\"\
+n"Sample17_Lane2","049_slice","$gbm_049_drake/expression/stringtie/ref_only/Sample17_Lane2"\
+n"Sample17_Lane3","049_slice","$gbm_049_drake/expression/stringtie/ref_only/Sample17_Lane3"\
+n"Sample29_Lane2","049_organoid","$gbm_049_drake/expression/stringtie/ref_only/Sample29_Lane2"\
+n"Sample29_Lane3","049_organoid","$gbm_049_drake/expression/stringtie/ref_only/Sample29_Lane3"\
+n"Sample18_Lane2","049_neurospheres","$gbm_049_drake/expression/stringtie/ref_only/Sample18_Lane2"\
+n"Sample18_Lane3","049_neurospheres","$gbm_049_drake/expression/stringtie/ref_only/Sample18_Lane3"\
+n"Sample6_Lane2","049_tissue","$gbm_049_drake/expression/stringtie/ref_only/Sample6_Lane2"\
+n"Sample6_Lane3","049_tissue","$gbm_049_drake/expression/stringtie/ref_only/Sample6_Lane3"\
+n"Sample26_Lane2","049_invitro","$gbm_049_drake/expression/stringtie/ref_only/Sample26_Lane2"\
+n"Sample27_Lane2","049_invitro","$gbm_049_drake/expression/stringtie/ref_only/Sample27_Lane2 "\
+n" > GBM049_all.csv
 
+actual script:
 
-	printf "\"ids\",\"type\",\"path\"\n\"1\",\"049_tissue\",\"$gbm_049/expression/stringtie/ref_only/1\"\n\"2\",\"049_tissue\",\"$gbm_049/expression/stringtie/ref_only/2\"\n\"3\",\"049_slice\",\"$gbm_049/expression/stringtie/ref_only/3\"\n\"4\",\"049_slice\",\"$gbm_049/expression/stringtie/ref_only/4\"\n\"5\",\"049_discells\",\"$gbm_049/expression/stringtie/ref_only/5\"\n\"6\",\"049_discells\",\"$gbm_049/expression/stringtie/ref_only/6\"\n\"7\",\"049_organoid\",\"$gbm_049/expression/stringtie/ref_only/7\"\n\"8\",\"049_organoid\",\"$gbm_049/expression/stringtie/ref_only/8\"\n\"9\",\"049_invitro\",\"$gbm_049/expression/stringtie/ref_only/9\"\n\"10\",\"049_invitro\",\"$gbm_049/expression/stringtie/ref_only/10\"\n" > GBM049_all.csv
+    printf "\"ids\",\"type\",\"path\"\n"Sample17_Lane2","049_slice","$gbm_049_drake/expression/stringtie/ref_only/Sample17_Lane2"\n"Sample17_Lane3","049_slice","$gbm_049_drake/expression/stringtie/ref_only/Sample17_Lane3"\n"Sample29_Lane2","049_organoid","$gbm_049_drake/expression/stringtie/ref_only/Sample29_Lane2"\n"Sample29_Lane3","049_organoid","$gbm_049_drake/expression/stringtie/ref_only/Sample29_Lane3"/n"Sample18_Lane2","049_neurospheres","$gbm_049_drake/expression/stringtie/ref_only/Sample18_Lane2"\n"Sample18_Lane3","049_neurospheres","$gbm_049_drake/expression/stringtie/ref_only/Sample18_Lane3"\n"Sample6_Lane2","049_tissue","$gbm_049_drake/expression/stringtie/ref_only/Sample6_Lane2"\n"Sample6_Lane3","049_tissue","$gbm_049_drake/expression/stringtie/ref_only/Sample6_Lane3"\n"Sample26_Lane2","049_invitro","$gbm_049_drake/expression/stringtie/ref_only/Sample26_Lane2"\n"Sample27_Lane2","049_invitro","$gbm_049_drake/expression/stringtie/ref_only/Sample27_Lane2 "\n" > GBM049_all.csv
 
 
 
