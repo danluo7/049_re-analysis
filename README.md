@@ -142,6 +142,10 @@ actual script:
 
 
 	dim(gene_expression)
+	
+the data frame is always the format table[rows 1 through whatever, c(columns 1 through whatever,any other column you need added)]. To view the first 3 rows of gene expression data for the first 4 samples plus the sample in the 6th column (1:3 means 1 through 3).
+	
+	gene_expression[1:3, c(1:4,6)]
 
 
 	i = row.names(gene_expression) == "BRD4"
