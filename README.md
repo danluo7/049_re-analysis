@@ -208,7 +208,7 @@ Good QC step: we had a low coverage library, or other problems, we might get sho
 ---------------------------
 optional
 
-#plot a pair of replicates to assess reproducibility of technical replicates. 
+#plot a pair of replicates to assess how far apart are my technical replicates and the reproducibility of these technical replicates. 
 #Tranform the data by converting to log2 scale after adding an arbitrary small value to avoid log2(0). Also add a straight line of slope 1, and #intercept 0. Also calculate the correlation coefficient and display in a legend.
 
 	x = gene_expression[,"FPKM.1"]
@@ -219,33 +219,33 @@ optional
 	legend("topleft", paste("R squared = ", round(rs, digits=3), sep=""), lwd=1, col="black")
 
 
-			check organoid samples
+check organoid samples
 
-				x = gene_expression[,"FPKM.3"]
-				y = gene_expression[,"FPKM.4"]
-				plot(x=log2(x+min_nonzero), y=log2(y+min_nonzero), pch=16, col="blue", cex=0.25, xlab="FPKM (011_organoid, Replicate 1)", ylab="FPKM (011_organoid, Replicate 2)", main="Comparison of expression values for replicates of organoid samples")
-				abline(a=0,b=1)
-				rs=cor(x,y)^2
-				legend("topleft", paste("R squared = ", round(rs, digits=3), sep=""), lwd=1, col="black")
+		x = gene_expression[,"FPKM.3"]
+		y = gene_expression[,"FPKM.4"]
+		plot(x=log2(x+min_nonzero), y=log2(y+min_nonzero), pch=16, col="blue", cex=0.25, xlab="FPKM (011_organoid, Replicate 1)", ylab="FPKM (011_organoid, Replicate 2)", main="Comparison of expression values for replicates of organoid samples")
+		abline(a=0,b=1)
+		rs=cor(x,y)^2
+		legend("topleft", paste("R squared = ", round(rs, digits=3), sep=""), lwd=1, col="black")
 
-			check tissue samples
+check tissue samples
 
-				x = gene_expression[,"FPKM.5"]
-				y = gene_expression[,"FPKM.6"]
-				plot(x=log2(x+min_nonzero), y=log2(y+min_nonzero), pch=16, col="blue", cex=0.25, xlab="FPKM (011_tissue, Replicate 1)", ylab="FPKM (011_tissue, Replicate 2)", main="Comparison of expression values for replicates of tissue samples")
-				abline(a=0,b=1)
-				rs=cor(x,y)^2
-				legend("topleft", paste("R squared = ", round(rs, digits=3), sep=""), lwd=1, col="black")
+		x = gene_expression[,"FPKM.5"]
+		y = gene_expression[,"FPKM.6"]
+		plot(x=log2(x+min_nonzero), y=log2(y+min_nonzero), pch=16, col="blue", cex=0.25, xlab="FPKM (011_tissue, Replicate 1)", ylab="FPKM (011_tissue, Replicate 2)", main="Comparison of expression values for replicates of tissue samples")
+		abline(a=0,b=1)
+		rs=cor(x,y)^2
+		legend("topleft", paste("R squared = ", round(rs, digits=3), sep=""), lwd=1, col="black")
 
 
-			check in vitro samples
+check in vitro samples
 
-				x = gene_expression[,"FPKM.7"]
-				y = gene_expression[,"FPKM.8"]
-				plot(x=log2(x+min_nonzero), y=log2(y+min_nonzero), pch=16, col="blue", cex=0.25, xlab="FPKM (011_invitro, Replicate 1)", ylab="FPKM (011_invitro, Replicate 2)", main="Comparison of expression values for replicates of in vitro samples")
-				abline(a=0,b=1)
-				rs=cor(x,y)^2
-				legend("topleft", paste("R squared = ", round(rs, digits=3), sep=""), lwd=1, col="black")
+		x = gene_expression[,"FPKM.7"]
+		y = gene_expression[,"FPKM.8"]
+		plot(x=log2(x+min_nonzero), y=log2(y+min_nonzero), pch=16, col="blue", cex=0.25, xlab="FPKM (011_invitro, Replicate 1)", ylab="FPKM (011_invitro, Replicate 2)", main="Comparison of expression values for replicates of in vitro samples")
+		abline(a=0,b=1)
+		rs=cor(x,y)^2
+		legend("topleft", paste("R squared = ", round(rs, digits=3), sep=""), lwd=1, col="black")
 
 ---------------------------------
 
