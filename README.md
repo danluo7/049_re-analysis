@@ -88,6 +88,9 @@ actual script:
 	cat GBM049_all.csv
 
 
+
+
+
 	R --no-restore
 	library(ballgown)
 	library(genefilter)
@@ -143,10 +146,11 @@ actual script:
 
 	dim(gene_expression)
 	
-the data frame is always the format table[rows 1 through whatever, c(columns 1 through whatever,any other column you need added)]. To view the first 3 rows of gene expression data for the first 4 samples plus the sample in the 6th column (1:3 means 1 through 3).
+The data frame is always the format table[rows 1 through whatever, c(columns 1 through whatever,any other column you need added)]. To view the first 3 rows of gene expression data for the first 4 samples plus the sample in the 6th column (1:3 means 1 through 3).
 	
 	gene_expression[1:3, c(1:4,6)]
 
+To view gene expression for a single gene by pulling out row names that matches (or ==) BRD4, across all columns (that weird [i,] which means i want every column, saves typing c(1:10) by just not typing anything)
 
 	i = row.names(gene_expression) == "BRD4"
 	gene_expression[i,]
@@ -298,6 +302,29 @@ Calculate the correlation between all pairs of data
 
 
 
+
+	dev.off()
+
+
+
+
+## comparing invitro to non-invitro using stattest function
+
+	cd /home/daniel/ubuntu/workspace/all_049/gbm_049_unmerged/de/ballgown/ref_only
+	mkdir stattest
+
+Need to make a new header file and recode the "type" header,since this will determine what gets compared in a stattest. the stattest function will use type as a covariate and use fpkm as a meansurement. since this function can't compare multiple things, need to make another file called GBM049_all_stattest.csv and make the type invitro vs. non-invitro. Then heatmaps can be done comparing invitro to everything else. 
+
+	printf "\"ids\",\"type\",\"path\"\n"1","non-invitro","$gbm_049/expression/stringtie/ref_only/1"\n"2","non-invitro","$gbm_049/expression/stringtie/ref_only/2"\n"3","non-invitro","$gbm_049/expression/stringtie/ref_only/3"\n"4","non-invitro","$gbm_049/expression/stringtie/ref_only/4"\n"5","non-invitro","$gbm_049/expression/stringtie/ref_only/5"\n"6","non-invitro","$gbm_049/expression/stringtie/ref_only/6"\n"7","non-invitro","$gbm_049/expression/stringtie/ref_only/7"\n"8","non-invitro","$gbm_049/expression/stringtie/ref_only/8"\n"9","invitro","$gbm_049/expression/stringtie/ref_only/9"\n"10","invitro","$gbm_049/expression/stringtie/ref_only/10"\n" > GBM049_all_stattest.csv
+
+	cat GBM049_all_stattest.csv
+	
+now rerun all the R scripts to see if the MDS looks weird (it should) and see if stattest and heat map now works. 
+	
+	
+	
+	
+	
 
 
 #Calculate the differential expression results including significance
