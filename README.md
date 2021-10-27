@@ -319,18 +319,109 @@ Need to make a new header file and recode the "type" header,since this will dete
 
 	cat GBM049_all_stattest.csv
 	
-now rerun all the R scripts to see if the MDS looks weird (it should) and see if stattest and heat map now works. 
-	
-	
-	
-	
-	
+now rerun all the R scripts to see if the resulting MDS looks weird (it should) and see if stattest and heat map now works. 
 
 
-#Calculate the differential expression results including significance
+	R --no-restore
+	library(ballgown)
+	library(genefilter)
+	library(dplyr)
+	library(devtools)
+	library(ggplot2)
+	library(gplots)
+	library(GenomicRanges)
+
+	pheno_data = read.csv("GBM049_all_stattest.csv")  
+
+	bg = ballgown(samples=as.vector(pheno_data$path), pData=pheno_data)
+	bg
+
+	bg_table = texpr(bg, 'all')
+
+	bg_gene_names = unique(bg_table[, 9:10])
+	head(bg_gene_names)
+
+	save(bg, file='bg.rda')
+
+	bg
+
+	pdf(file="GBM049_R_output_stattest.pdf")
+
+	working_dir = "~/workspace/gbm_049_unmerged/de/ballgown/ref_only/stattest"
+	setwd(working_dir)
+	dir()
+		
+	load('bg.rda')
+		
+	bg_table = texpr(bg, 'all')
+	bg_gene_names = unique(bg_table[, 9:10])
+
+	gene_expression = as.data.frame(gexpr(bg))
+	head(gene_expression)
+
+	colnames(gene_expression)
+	dim(gene_expression)
+
+	i = row.names(gene_expression) == "BRD4"
+	gene_expression[i,]
+
+	transcript_gene_table = indexes(bg)$t2g
+	head(transcript_gene_table)
+		
+	length(row.names(transcript_gene_table)) #Transcript count
+	length(unique(transcript_gene_table[,"g_id"])) #Unique Gene count
+
+	counts=table(transcript_gene_table[,"g_id"])
+	c_one = length(which(counts == 1))
+	c_more_than_one = length(which(counts > 1))
+	c_max = max(counts)
+	hist(counts, breaks=50, col="bisque4", xlab="Transcripts per gene", main="Distribution of transcript count per gene")
+	legend_text = c(paste("Genes with one transcript =", c_one), paste("Genes with more than one transcript =", c_more_than_one), paste("Max 		transcripts for single gene = ", c_max))
+	legend("topright", legend_text, lty=NULL)
+
+	full_table <- texpr(bg , 'all')
+	hist(full_table$length, breaks=500, xlab="Transcript length (bp)", main="Distribution of transcript lengths", col="steelblue")
+		
+	min(gene_expression[,"FPKM.1"])
+	max(gene_expression[,"FPKM.2"])
+		
+	min_nonzero=1
+
+	data_columns=c(1:10)
+	short_names=c("non-invitro1","non-invitro2","non-invitro3","non-invitro4","non-invitro5", "non-invitro6","non-invitro7","non-invitro8","invitro_1","invitro_2")
+
+
+	colors()
+	data_colors=c("tomato1","tomato2","royalblue1","royalblue2","seagreen1","seagreen2","grey1","grey2","brown1","brown2")
+
+	boxplot(log2(gene_expression[,data_columns]+min_nonzero), col=data_colors, names=short_names, las=2, ylab="log2(FPKM)", main="Distribution of FPKMs for libraries of all 10 samples")
+
+	gene_expression[,"sum"]=apply(gene_expression[,data_columns], 1, sum)
+	
+	i = which(gene_expression[,"sum"] > 10)
+
+	r=cor(gene_expression[i,data_columns], use="pairwise.complete.obs", method="pearson")
+	r
+
+	d=1-r
+	mds=cmdscale(d, k=2, eig=TRUE)
+	par(mfrow=c(1,1))
+	plot(mds$points, type="n", xlab="", ylab="", main="MDS distance plot (all non-zero genes)", xlim=c(-0.4,0.4), ylim=c(-0.4,0.4))
+	points(mds$points[,1], mds$points[,2], col="grey", cex=2, pch=16)
+	text(mds$points[,1], mds$points[,2], short_names, col=data_colors)
+
+	plot(mds$points, type="n", xlab="", ylab="", main="MDS distance plot (all non-zero genes)", xlim=c(-0.3,0.3), ylim=c(-0.3,0.3))
+	points(mds$points[,1], mds$points[,2], col="grey", cex=2, pch=16)
+	text(mds$points[,1], mds$points[,2], short_names, col=data_colors)
+
+
+
+# Calculate the differential expression results including significance
 
 	results_genes = stattest(bg, feature="gene", covariate="type", getFC=TRUE, meas="FPKM")
 	results_genes = merge(results_genes,bg_gene_names,by.x=c("id"),by.y=c("gene_id"))
+
+
 
 
 
