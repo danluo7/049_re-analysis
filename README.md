@@ -323,6 +323,24 @@ Need to make a new header file and recode the "type" header,since this will dete
 	
 
 
+printf "\"ids\",\"type\",\"path
+\"\n\"1\",\"non-slice\",\"$gbm_049/expression/stringtie/ref_only/1
+\"\n\"2\",\"non-slice\",\"$gbm_049/expression/stringtie/ref_only/2
+\"\n\"3\",\"slice\",\"$gbm_049/expression/stringtie/ref_only/3
+\"\n\"4\",\"slice\",\"$gbm_049/expression/stringtie/ref_only/4
+\"\n\"5\",\"non-slice\",\"$gbm_049/expression/stringtie/ref_only/5
+\"\n\"6\",\"non-slice\",\"$gbm_049/expression/stringtie/ref_only/6
+\"\n\"7\",\"non-slice\",\"$gbm_049/expression/stringtie/ref_only/7
+\"\n\"8\",\"non-slice\",\"$gbm_049/expression/stringtie/ref_only/8
+\"\n\"9\",\"non-slice\",\"$gbm_049/expression/stringtie/ref_only/9
+\"\n\"10\",\"non-slice\",\"$gbm_049/expression/stringtie/ref_only/10
+\"\n" > GBM049_all.csv
+
+
+script:
+
+	printf "\"ids\",\"type\",\"path\"\n\"1\",\"049_tissue\",\"$gbm_049/expression/stringtie/ref_only/1\"\n\"2\",\"049_tissue\",\"$gbm_049/expression/stringtie/ref_only/2\"\n\"3\",\"049_slice\",\"$gbm_049/expression/stringtie/ref_only/3\"\n\"4\",\"049_slice\",\"$gbm_049/expression/stringtie/ref_only/4\"\n\"5\",\"049_neurosphere\",\"$gbm_049/expression/stringtie/ref_only/5\"\n\"6\",\"049_neurosphere\",\"$gbm_049/expression/stringtie/ref_only/6\"\n\"7\",\"049_organoid\",\"$gbm_049/expression/stringtie/ref_only/7\"\n\"8\",\"049_organoid\",\"$gbm_049/expression/stringtie/ref_only/8\"\n\"9\",\"049_invitro\",\"$gbm_049/expression/stringtie/ref_only/9\"\n\"10\",\"049_invitro\",\"$gbm_049/expression/stringtie/ref_only/10\"\n" > GBM049_all.csv
+
 
 
 
