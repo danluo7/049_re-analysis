@@ -321,18 +321,12 @@ Need to make a new header file and recode the "type" header,since this will dete
 	cd /home/daniel/ubuntu/workspace/all_049/gbm_049_unmerged/de/ballgown/ref_only
 	mkdir stattest
 	
-	printf "\"ids\",\"type\",\"path\"\
-n"1","049_slice","$gbm_049/expression/stringtie/ref_only/1"\
-n"2","049_slice","$gbm_049/expression/stringtie/ref_only/2"\
-n"3","049_organoid","$gbm_049/expression/stringtie/ref_only/3"\
-n"4","049_organoid","$gbm_049/expression/stringtie/ref_only/4"\
-n"5","049_neurospheres","$gbm_049/expression/stringtie/ref_only/5"\
-n"6","049_neurospheres","$gbm_049/expression/stringtie/ref_only/6"\
-n"7","049_tissue","$gbm_049/expression/stringtie/ref_only/7"\
-n"8","049_tissue","$gbm_049/expression/stringtie/ref_only/8"\
-n"9","049_invitro","$gbm_049/expression/stringtie/ref_only/9"\
-n"10","049_invitro","$gbm_049/expression/stringtie/ref_only/10"\
-n" > GBM049_all_stattest.csv
+
+
+
+
+
+
 
 	cat GBM049_all_stattest.csv
 	
