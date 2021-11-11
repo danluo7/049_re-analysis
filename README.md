@@ -335,7 +335,7 @@ printf "\"ids\",\"type\",\"path
 \"\n\"8\",\"non-tissue\",\"$gbm_049/expression/stringtie/ref_only/8
 \"\n\"9\",\"non-tissue\",\"$gbm_049/expression/stringtie/ref_only/9
 \"\n\"10\",\"non-tissue\",\"$gbm_049/expression/stringtie/ref_only/10
-\"\n" > GBM049_all.csv
+\"\n" > GBM049_all_stattest.csv
 
 
 script:
