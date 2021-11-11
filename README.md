@@ -320,31 +320,28 @@ Need to make a new header file and recode the "type" header,since this will dete
 
 	cd /home/daniel/ubuntu/workspace/all_049/gbm_049_unmerged/de/ballgown/ref_only
 	mkdir stattest
+	cd stattest
 	
 
 
 printf "\"ids\",\"type\",\"path
-\"\n\"1\",\"non-slice\",\"$gbm_049/expression/stringtie/ref_only/1
-\"\n\"2\",\"non-slice\",\"$gbm_049/expression/stringtie/ref_only/2
-\"\n\"3\",\"slice\",\"$gbm_049/expression/stringtie/ref_only/3
-\"\n\"4\",\"slice\",\"$gbm_049/expression/stringtie/ref_only/4
-\"\n\"5\",\"non-slice\",\"$gbm_049/expression/stringtie/ref_only/5
-\"\n\"6\",\"non-slice\",\"$gbm_049/expression/stringtie/ref_only/6
-\"\n\"7\",\"non-slice\",\"$gbm_049/expression/stringtie/ref_only/7
-\"\n\"8\",\"non-slice\",\"$gbm_049/expression/stringtie/ref_only/8
-\"\n\"9\",\"non-slice\",\"$gbm_049/expression/stringtie/ref_only/9
-\"\n\"10\",\"non-slice\",\"$gbm_049/expression/stringtie/ref_only/10
+\"\n\"1\",\"tissue\",\"$gbm_049/expression/stringtie/ref_only/1
+\"\n\"2\",\"tissue\",\"$gbm_049/expression/stringtie/ref_only/2
+\"\n\"3\",\"non-tissue\",\"$gbm_049/expression/stringtie/ref_only/3
+\"\n\"4\",\"non-tissue\",\"$gbm_049/expression/stringtie/ref_only/4
+\"\n\"5\",\"non-tissue\",\"$gbm_049/expression/stringtie/ref_only/5
+\"\n\"6\",\"non-tissue\",\"$gbm_049/expression/stringtie/ref_only/6
+\"\n\"7\",\"non-tissue\",\"$gbm_049/expression/stringtie/ref_only/7
+\"\n\"8\",\"non-tissue\",\"$gbm_049/expression/stringtie/ref_only/8
+\"\n\"9\",\"non-tissue\",\"$gbm_049/expression/stringtie/ref_only/9
+\"\n\"10\",\"non-tissue\",\"$gbm_049/expression/stringtie/ref_only/10
 \"\n" > GBM049_all.csv
 
 
 script:
 
-	printf "\"ids\",\"type\",\"path\"\n\"1\",\"049_tissue\",\"$gbm_049/expression/stringtie/ref_only/1\"\n\"2\",\"049_tissue\",\"$gbm_049/expression/stringtie/ref_only/2\"\n\"3\",\"049_slice\",\"$gbm_049/expression/stringtie/ref_only/3\"\n\"4\",\"049_slice\",\"$gbm_049/expression/stringtie/ref_only/4\"\n\"5\",\"049_neurosphere\",\"$gbm_049/expression/stringtie/ref_only/5\"\n\"6\",\"049_neurosphere\",\"$gbm_049/expression/stringtie/ref_only/6\"\n\"7\",\"049_organoid\",\"$gbm_049/expression/stringtie/ref_only/7\"\n\"8\",\"049_organoid\",\"$gbm_049/expression/stringtie/ref_only/8\"\n\"9\",\"049_invitro\",\"$gbm_049/expression/stringtie/ref_only/9\"\n\"10\",\"049_invitro\",\"$gbm_049/expression/stringtie/ref_only/10\"\n" > GBM049_all.csv
 
-
-
-
-
+	printf "\"ids\",\"type\",\"path\"\n\"1\",\"tissue\",\"$gbm_049/expression/stringtie/ref_only/1\"\n\"2\",\"tissue\",\"$gbm_049/expression/stringtie/ref_only/2\"\n\"3\",\"non-tissue\",\"$gbm_049/expression/stringtie/ref_only/3\"\n\"4\",\"non-tissue\",\"$gbm_049/expression/stringtie/ref_only/4\"\n\"5\",\"non-tissue\",\"$gbm_049/expression/stringtie/ref_only/5\"\n\"6\",\"non-tissue\",\"$gbm_049/expression/stringtie/ref_only/6\"\n\"7\",\"non-tissue\",\"$gbm_049/expression/stringtie/ref_only/7\"\n\"8\",\"non-tissue\",\"$gbm_049/expression/stringtie/ref_only/8\"\n\"9\",\"non-tissue\",\"$gbm_049/expression/stringtie/ref_only/9\"\n\"10\",\"non-tissue\",\"$gbm_049/expression/stringtie/ref_only/10\"\n" > GBM049_all.csv
 
 	cat GBM049_all_stattest.csv
 	
@@ -417,7 +414,7 @@ now rerun all the R scripts to see if the resulting MDS looks weird (it should) 
 	min_nonzero=1
 
 	data_columns=c(1:10)
-	short_names=c("non-invitro1","non-invitro2","non-invitro3","non-invitro4","non-invitro5", "non-invitro6","non-invitro7","non-invitro8","invitro_1","invitro_2")
+	short_names=c("tissue_1","tissue_2","slice_1","slice_2","neurospheres_1", "neurospheres_2","organoid_1","organoid_2","invitro_1","invitro_2")
 
 
 	#colors()
@@ -464,21 +461,21 @@ now rerun all the R scripts to see if the resulting MDS looks weird (it should) 
 
 	sig=which(results_genes$pval<0.05)
 	results_genes[,"de"] = log2(results_genes[,"fc"])
-	hist(results_genes[sig,"de"], breaks=50, col="seagreen", xlab="log2(Fold change) invitro vs non-invitro", main="Distribution of differential expression values")
+	hist(results_genes[sig,"de"], breaks=50, col="seagreen", xlab="log2(Fold change) tissue vs non-tissue", main="Distribution of differential expression values")
 	abline(v=-2, col="black", lwd=2, lty=2)
 	abline(v=2, col="black", lwd=2, lty=2)
 	legend("topleft", "Fold-change > 4", lwd=2, lty=2)
 
 
 
-#Display the grand expression values from invitro and non-invitro and mark those that are significantly differentially expressed
+#Display the grand expression values from tissue and non-tissue and mark those that are significantly differentially expressed
 
-	gene_expression[,"invitro"]=apply(gene_expression[,c(9:10)], 1, mean)
-	gene_expression[,"non-invitro"]=apply(gene_expression[,c(1:8)], 1, mean)
+	gene_expression[,"tissue"]=apply(gene_expression[,c(1:2)], 1, mean)
+	gene_expression[,"non-tissue"]=apply(gene_expression[,c(3:10)], 1, mean)
 
 	x=log2(gene_expression[,"invitro"]+min_nonzero)
 	y=log2(gene_expression[,"non-invitro"]+min_nonzero)
-	plot(x=x, y=y, pch=16, cex=0.25, xlab="UHR FPKM (log2)", ylab="HBR FPKM (log2)", main="invitro vs non-invitro FPKMs")
+	plot(x=x, y=y, pch=16, cex=0.25, xlab="tissue FPKM (log2)", ylab="non-tissue FPKM (log2)", main="tissue vs non-tissue FPKMs")
 	abline(a=0, b=1)
 	xsig=x[sig]
 	ysig=y[sig]
@@ -530,7 +527,7 @@ output[1:25,c(1,4,5)]
 	heatmap.2(data, hclustfun=myclust, distfun=mydist, na.rm = TRUE, scale="none", dendrogram="both", margins=c(10,4), Rowv=TRUE, Colv=TRUE, symbreaks=FALSE, key=TRUE, symkey=FALSE, density.info="none", trace="none", main=main_title, cexRow=0.3, cexCol=1, labRow=sig_gene_names_de,col=rev(heat.colors(75)))
 
 
-
+dev.off()
 
 
 
