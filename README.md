@@ -341,7 +341,7 @@ printf "\"ids\",\"type\",\"path
 script:
 
 
-	printf "\"ids\",\"type\",\"path\"\n\"1\",\"tissue\",\"$gbm_049/expression/stringtie/ref_only/1\"\n\"2\",\"tissue\",\"$gbm_049/expression/stringtie/ref_only/2\"\n\"3\",\"non-tissue\",\"$gbm_049/expression/stringtie/ref_only/3\"\n\"4\",\"non-tissue\",\"$gbm_049/expression/stringtie/ref_only/4\"\n\"5\",\"non-tissue\",\"$gbm_049/expression/stringtie/ref_only/5\"\n\"6\",\"non-tissue\",\"$gbm_049/expression/stringtie/ref_only/6\"\n\"7\",\"non-tissue\",\"$gbm_049/expression/stringtie/ref_only/7\"\n\"8\",\"non-tissue\",\"$gbm_049/expression/stringtie/ref_only/8\"\n\"9\",\"non-tissue\",\"$gbm_049/expression/stringtie/ref_only/9\"\n\"10\",\"non-tissue\",\"$gbm_049/expression/stringtie/ref_only/10\"\n" > GBM049_all.csv
+	printf "\"ids\",\"type\",\"path\"\n\"1\",\"tissue\",\"$gbm_049/expression/stringtie/ref_only/1\"\n\"2\",\"tissue\",\"$gbm_049/expression/stringtie/ref_only/2\"\n\"3\",\"non-tissue\",\"$gbm_049/expression/stringtie/ref_only/3\"\n\"4\",\"non-tissue\",\"$gbm_049/expression/stringtie/ref_only/4\"\n\"5\",\"non-tissue\",\"$gbm_049/expression/stringtie/ref_only/5\"\n\"6\",\"non-tissue\",\"$gbm_049/expression/stringtie/ref_only/6\"\n\"7\",\"non-tissue\",\"$gbm_049/expression/stringtie/ref_only/7\"\n\"8\",\"non-tissue\",\"$gbm_049/expression/stringtie/ref_only/8\"\n\"9\",\"non-tissue\",\"$gbm_049/expression/stringtie/ref_only/9\"\n\"10\",\"non-tissue\",\"$gbm_049/expression/stringtie/ref_only/10\"\n" > GBM049_all_stattest.csv
 
 	cat GBM049_all_stattest.csv
 	
