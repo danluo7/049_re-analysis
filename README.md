@@ -473,8 +473,8 @@ now rerun all the R scripts to see if the resulting MDS looks weird (it should) 
 	gene_expression[,"tissue"]=apply(gene_expression[,c(1:2)], 1, mean)
 	gene_expression[,"non-tissue"]=apply(gene_expression[,c(3:10)], 1, mean)
 
-	x=log2(gene_expression[,"invitro"]+min_nonzero)
-	y=log2(gene_expression[,"non-invitro"]+min_nonzero)
+	x=log2(gene_expression[,"tissue"]+min_nonzero)
+	y=log2(gene_expression[,"non-tissue"]+min_nonzero)
 	plot(x=x, y=y, pch=16, cex=0.25, xlab="tissue FPKM (log2)", ylab="non-tissue FPKM (log2)", main="tissue vs non-tissue FPKMs")
 	abline(a=0, b=1)
 	xsig=x[sig]
